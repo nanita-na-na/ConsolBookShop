@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5219b39-8beb-4e36-bf15-9fd902f2732f" name="Changes" comment="" />
+    <list default="true" id="f5219b39-8beb-4e36-bf15-9fd902f2732f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/BookShop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Dao/ProductDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Dao/impl/ProductDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Dao/impl/UserDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/OrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/Validations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/impl/OrderServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/impl/ProductServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/impl/ValidationImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Menuable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/impl/AdminMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/impl/LoginMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/impl/OrderMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/impl/ProductMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2E8CmX0A7Z8myE9gybSkDKqQNKn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -24,6 +68,20 @@
     "RunOnceActivity.ShowReadmeOnStart": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="BookShop" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="BookShop" />
+      <module name="ConsolBookShop" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BookShop" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

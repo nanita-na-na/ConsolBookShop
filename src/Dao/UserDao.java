@@ -1,2 +1,9 @@
-package Dao;public interface UserDao {
+package Dao;
+
+import Model.User;
+
+import java.util.List;
+
+public interface UserDao {
+    List<User> init();
 }
