@@ -1,6 +1,5 @@
 package View.impl;
 
-import Model.Constants;
 import Service.impl.OrderServiceImpl;
 import Service.impl.ProductServiceImpl;
 import Service.impl.UserServiceImpl;
@@ -8,44 +7,47 @@ import View.Menuable;
 
 import java.util.Scanner;
 
+import static Model.Constants.*;
+
 public class AdminMenu implements Menuable {
-    boolean isRunning = true;
-    private String[] items = {"1. Show all users", "2. Show all books", "3. Add new book",
+    private final String[] items = {"1. Show all users", "2. Show all books", "3. Add new book",
             "4. Block/Unblock user", "5. Confirm/Unconfirm orders", "6. Delete product",
             "7. Delete user", "8. Edit product", "9. Back", "0. Exit"};
-
-    private Scanner scanner;
+    boolean isRunning = true;
 
     @Override
     public void showMenu() {
         System.out.println("HELLO ADMIN");
         showItems(items);
-        scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("PLEASE ENTER THE MENU NUMBER");
 
         while (isRunning) {
             int choice = scanner.nextInt();
 
-            if (new Constants().SHOW_ALL_USERS == choice) {
+            if (SHOW_ALL_USERS == choice) {
                 new UserServiceImpl().printAllUsers();
-            } else if (new Constants().SHOW_ALL_BOOKS == choice) {
+            } else if (SHOW_ALL_BOOKS == choice) {
                 new ProductServiceImpl().printAllProducts();
-            } else if (new Constants().ADD_NEW_BOOKS == choice) {
+            } else if (ADD_NEW_BOOKS == choice) {
                 new ProductServiceImpl().addProduct();
-            } else if (new Constants().BLOCK_UNBLOCK_USERS == choice) {
+            } else if (BLOCK_UNBLOCK_USERS == choice) {
                 new UserServiceImpl().blockOrUnblockUser();
-            } else if (new Constants().CONFIRM_UNCONFIRM_ORDERS == choice) {
+            } else if (CONFIRM_UNCONFIRM_ORDERS == choice) {
                 new OrderServiceImpl().confirmOrUnconfirnOrder();
-            } else if (new Constants().DELETE_PRODUCT == choice) {
+            } else if (DELETE_PRODUCT == choice) {
                 new ProductServiceImpl().deleteProduct();
-            } else if (new Constants().DELETE_USER == choice) {
+            } else if (DELETE_USER == choice) {
                 new UserServiceImpl().deleteUser();
-            } else if (new Constants().EDIT_PRODUCT == choice) {
+            } else if (EDIT_PRODUCT == choice) {
                 new ProductServiceImpl().editProduct();
-            } else if (new Constants().BACK == choice) {
+            } else if (BACK == choice) {
                 new LoginMenu().showMenu();
-            } else if (new Constants().EXIT == choice) {
+            } else if (EXIT == choice) {
                 exit();
+            } else {
+                System.out.println("WRONG POINT");
+                showMenu();
             }
         }
         System.out.println("PLEASE ENTER THE MENU NUMBER");

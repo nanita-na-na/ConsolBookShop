@@ -1,14 +1,15 @@
 package View.impl;
 
-import Model.Constants;
 import Service.impl.OrderServiceImpl;
 import View.Menuable;
 
 import java.util.Scanner;
 
+import static Model.Constants.*;
+
 public class OrderMenu implements Menuable {
     boolean isRunning = true;
-    private String[] items = {"1. Add product to order", "2. Order checkout status",
+    private final String[] items = {"1. Add product to order", "2. Order checkout status",
             "3. Show my order", "9. BACK", "0. EXIT"};
     private Scanner scanner;
 
@@ -22,16 +23,19 @@ public class OrderMenu implements Menuable {
         while (isRunning) {
             int choice = scanner.nextInt();
 
-            if (new Constants().ADD_PRODUCT_TO_ORDER == choice) {
+            if (ADD_PRODUCT_TO_ORDER == choice) {
                 new OrderServiceImpl().addProductToMyOrder();
-            } else if (new Constants().ORDER_CHECKOUT == choice) {
+            } else if (ORDER_CHECKOUT == choice) {
                 new OrderServiceImpl().orderCheckoutStatus();
-            } else if (new Constants().SHOW_MY_ORDER == choice) {
+            } else if (SHOW_MY_ORDER == choice) {
                 new OrderServiceImpl().showMyOrder();
-            } else if (new Constants().BACK == choice) {
+            } else if (BACK == choice) {
                 new ProductMenu().showMenu();
-            } else if (new Constants().EXIT == choice) {
+            } else if (EXIT == choice) {
                 exit();
+            } else {
+                System.out.println("WRONG POINT!");
+                showMenu();
             }
         }
         System.out.println("PLEASE ENTER THE MENU NUMBER");
