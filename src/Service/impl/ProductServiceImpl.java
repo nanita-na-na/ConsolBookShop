@@ -1,12 +1,13 @@
 package Service.impl;
 
 import Dao.impl.ProductDaoImpl;
-import Model.Constants;
 import Model.Product;
 import Service.ProductService;
 
 import java.util.Comparator;
 import java.util.Scanner;
+
+import static Model.Constants.*;
 
 public class ProductServiceImpl implements ProductService {
     Scanner scanner = new Scanner(System.in);
@@ -45,17 +46,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void sortProductsByPrice() {
-        ProductDaoImpl.getInstance().books.sort(Comparator.comparing(book -> book.getPrise()));
+        ProductDaoImpl.getInstance().books.sort(Comparator.comparing(Product::getPrise));
         ProductDaoImpl.getInstance().books.forEach(System.out::println);
     }
 
     public void sortBooksByName() {
-        ProductDaoImpl.getInstance().books.sort(Comparator.comparing(book -> book.getName()));
+        ProductDaoImpl.getInstance().books.sort(Comparator.comparing(Product::getName));
         ProductDaoImpl.getInstance().books.forEach(System.out::println);
     }
 
     public void sortBooksByAuthor() {
-        ProductDaoImpl.getInstance().books.sort(Comparator.comparing(book -> book.getAuthor()));
+        ProductDaoImpl.getInstance().books.sort(Comparator.comparing(Product::getAuthor));
         ProductDaoImpl.getInstance().books.forEach(System.out::println);
     }
 
@@ -65,17 +66,17 @@ public class ProductServiceImpl implements ProductService {
         String nameProductEdit = scanner.next();
 
         if (ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().
-                equals(nameProductEdit)).anyMatch(book -> book.getName().equals(nameProductEdit)) == false) {
+                equals(nameProductEdit)).noneMatch(book -> book.getName().equals(nameProductEdit))) {
             System.out.println("This product exist");
         } else {
             System.out.println("1. Edit Name 2. Edit Author 3. Edit Price");
             scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
-            if (new Constants().EDIT_BOOK_NAME == choice) {
+            if (EDIT_BOOK_NAME == choice) {
                 editBookName();
-            } else if (new Constants().EDIT_BOOK_AUTHOR == choice) {
+            } else if (EDIT_BOOK_AUTHOR == choice) {
                 editBookAuthor();
-            } else if (new Constants().EDIT_BOOK_PRICE == choice) {
+            } else if (EDIT_BOOK_PRICE == choice) {
                 editBookPrice();
             } else {
                 System.out.println("WRONG POINT MENU");
@@ -88,21 +89,33 @@ public class ProductServiceImpl implements ProductService {
         System.out.println("Enter name book what you want edit");
         String nameProductEdit = scanner.next();
 
-        System.out.println("Enter new name book");
-        String inputNameBook = scanner.next();
-        ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().equals(nameProductEdit))
-                .forEach(book -> book.setName(inputNameBook));
+        if (ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().equals(nameProductEdit))
+                .noneMatch(book -> book.getName().equals(nameProductEdit))) {
+            System.out.println("This book exist");
+            editProduct();
+        } else {
+
+            System.out.println("Enter new name book");
+            String inputNameBook = scanner.next();
+            ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().equals(nameProductEdit))
+                    .forEach(book -> book.setName(inputNameBook));
+        }
     }
 
     public void editBookAuthor() {
         scanner = new Scanner(System.in);
         System.out.println("Enter name book what you want edit");
         String nameProductEdit = scanner.next();
-
-        System.out.println("Enter new author book");
-        String inputAuthorBook = scanner.next();
-        ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().equals(nameProductEdit))
-                .forEach(book -> book.setAuthor(inputAuthorBook));
+        if (ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().equals(nameProductEdit))
+                .noneMatch(book -> book.getName().equals(nameProductEdit))) {
+            System.out.println("This book exist");
+            editProduct();
+        } else {
+            System.out.println("Enter new author book");
+            String inputAuthorBook = scanner.next();
+            ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().equals(nameProductEdit))
+                    .forEach(book -> book.setAuthor(inputAuthorBook));
+        }
     }
 
     public void editBookPrice() {
@@ -110,11 +123,17 @@ public class ProductServiceImpl implements ProductService {
         System.out.println("Enter name book what you want edit");
         String nameProductEdit = scanner.next();
 
-        System.out.println("Enter new prise book");
-        int inputPriseBook = scanner.nextInt();
+        if (ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().equals(nameProductEdit))
+                .noneMatch(book -> book.getName().equals(nameProductEdit))) {
+            System.out.println("This book exist");
+            editProduct();
+        } else {
+            System.out.println("Enter new prise book");
+            int inputPriseBook = scanner.nextInt();
 
-        ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().equals(nameProductEdit))
-                .forEach(book -> book.setPrise(inputPriseBook));
+            ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().equals(nameProductEdit))
+                    .forEach(book -> book.setPrise(inputPriseBook));
+        }
     }
 
     public void searchSpecificProduct() {
@@ -122,14 +141,14 @@ public class ProductServiceImpl implements ProductService {
         scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
 
-        if (new Constants().SEARCH_BY_BOOK_NAME == choice) {
+        if (SEARCH_BY_BOOK_NAME == choice) {
             searchByName();
-        } else if (new Constants().SEARCH_BY_BOOK_AUTHOR == choice) {
+        } else if (SEARCH_BY_BOOK_AUTHOR == choice) {
             searchByAuthor();
         } else {
             System.out.println("WRONG POINT");
+            searchSpecificProduct();
         }
-        System.out.println("PLEASE ENTER THE MENU NUMBER");
     }
 
     public void searchByName() {
@@ -137,8 +156,9 @@ public class ProductServiceImpl implements ProductService {
         scanner = new Scanner(System.in);
         String searchName = scanner.next();
         if (ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().equals(searchName))
-                .anyMatch(book -> book.getName().equals(searchName)) == false) {
+                .noneMatch(book -> book.getName().equals(searchName))) {
             System.out.println("We don't have that book");
+            searchSpecificProduct();
         } else {
             ProductDaoImpl.getInstance().books.stream().filter(book -> book.getName().equals(searchName))
                     .forEach(System.out::println);
@@ -151,8 +171,9 @@ public class ProductServiceImpl implements ProductService {
         scanner = new Scanner(System.in);
         String searchAuthor = scanner.next();
         if (ProductDaoImpl.getInstance().books.stream().filter(book -> book.getAuthor().equals(searchAuthor))
-                .anyMatch(book -> book.getAuthor().equals(searchAuthor)) == false) {
+                .noneMatch(book -> book.getAuthor().equals(searchAuthor))) {
             System.out.println("We don't have that book");
+            searchSpecificProduct();
         } else {
             ProductDaoImpl.getInstance().books.stream().filter(book -> book.getAuthor().equals(searchAuthor))
                     .forEach(System.out::println);

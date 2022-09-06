@@ -21,7 +21,7 @@ public class ValidationImpl implements Validations {
         long inputIdUser = scanner.nextLong();
 
         if (UserDaoImpl.getInstance().users.stream().filter(user -> user.getId() == inputIdUser)
-                .anyMatch(user -> user.getId() == inputIdUser) == true) {
+                .anyMatch(user -> user.getId() == inputIdUser)) {
             System.out.println("Please get another id");
             registerUser();
         } else {
@@ -44,8 +44,8 @@ public class ValidationImpl implements Validations {
         System.out.println("Enter your password");
         String pass = this.scanner.next();
 
-        if ((userDaoImpl.users.stream().filter(user -> user.getId() == userId).filter(user -> user.getPassword().equals(pass))
-                .allMatch(user -> user.getId() == userId && user.getPassword() == pass)) == false) {
+        if (!(userDaoImpl.users.stream().filter(user -> user.getId() == userId).filter(user -> user.getPassword().equals(pass))
+                .allMatch(user -> user.getId() == userId && user.getPassword() == pass))) {
             new ProductMenu().showMenu();
         } else {
             System.out.println("Wrong login or password");

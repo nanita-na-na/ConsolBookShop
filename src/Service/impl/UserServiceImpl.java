@@ -1,10 +1,12 @@
 package Service.impl;
 
 import Dao.impl.UserDaoImpl;
-import Model.Constants;
 import Service.UserService;
 
 import java.util.Scanner;
+
+import static Model.Constants.BLOCK_USER;
+import static Model.Constants.UNBLOCK_USER;
 
 public class UserServiceImpl implements UserService {
     Scanner scanner = new Scanner(System.in);
@@ -33,9 +35,9 @@ public class UserServiceImpl implements UserService {
         scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
 
-        if (new Constants().BLOCK_USER == choice) {
+        if (BLOCK_USER == choice) {
             blockUser();
-        } else if (new Constants().UNBLOCK_USER == choice) {
+        } else if (UNBLOCK_USER == choice) {
             unblockUser();
         } else {
             System.out.println("WRONG POINT");
@@ -48,7 +50,7 @@ public class UserServiceImpl implements UserService {
         long blockId = scanner.nextLong();
 
         if (UserDaoImpl.getInstance().users.stream().filter(user -> user.getId() == blockId)
-                .anyMatch(user -> user.getId() == blockId) == false) {
+                .noneMatch(user -> user.getId() == blockId)) {
             System.out.println("We don't have that user");
         } else {
             UserDaoImpl.getInstance().users.stream().filter(user -> user.getId() == blockId)
@@ -63,7 +65,7 @@ public class UserServiceImpl implements UserService {
         long unblockId = scanner.nextLong();
 
         if (UserDaoImpl.getInstance().users.stream().filter(user -> user.getId() == unblockId)
-                .anyMatch(user -> user.getId() == unblockId) == false) {
+                .noneMatch(user -> user.getId() == unblockId)) {
             System.out.println("We don't have that user");
         } else {
             UserDaoImpl.getInstance().users.stream().filter(user -> user.getId() == unblockId)
